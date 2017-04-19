@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/flesler/hashmap"
-
-    >hashmap (v2.1.0)</a>
+    <a href="https://github.com/flesler/hashmap">hashmap (v2.1.0)</a>
 </h1>
 <h4>HashMap Class for JavaScript</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.hashmap">module hashmap</a><ol>
 
@@ -439,12 +432,12 @@
 ### Iterating
 
 ```js
-map.set(1, &#x22;test 1&#x22;);
-map.set(2, &#x22;test 2&#x22;);
-map.set(3, &#x22;test 3&#x22;);
+map.set(1, "test 1");
+map.set(2, "test 2");
+map.set(3, "test 3");
 
 map.<span class="apidocCodeKeywordSpan">forEach</span>(function(value, key) {
-    console.log(key + &#x22; : &#x22; + value);
+    console.log(key + " : " + value);
 });
 ```
 
@@ -465,24 +458,24 @@ map.<span class="apidocCodeKeywordSpan">forEach</span>(function(value, key) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">get = function (key) {
 			var data = this._data[this.hash(key)];
-			return data &#x26;&#x26; data[1];
+			return data &amp;&amp; data[1];
 		}</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var HashMap = require(&#x27;hashmap&#x27;);
+var HashMap = require('hashmap');
 ```
 
 ### Basic use case
 
 ```js
-map.set(&#x22;some_key&#x22;, &#x22;some value&#x22;);
-map.<span class="apidocCodeKeywordSpan">get</span>(&#x22;some_key&#x22;); // --&#x3e; &#x22;some value&#x22;
+map.set("some_key", "some value");
+map.<span class="apidocCodeKeywordSpan">get</span>("some_key"); // --&gt; "some value"
 ```
 ### No stringification
 
 ```js
-map.set(&#x22;1&#x22;, &#x22;string one&#x22;);
-map.set(1, &#x22;number one&#x22;);
-map.get(&#x22;1&#x22;); // --&#x3e; &#x22;string one&#x22;
+map.set("1", "string one");
+map.set(1, "number one");
+map.get("1"); // --&gt; "string one"
 ...</pre></li>
     </ul>
 
@@ -512,34 +505,34 @@ map.get(&#x22;1&#x22;); // --&#x3e; &#x22;string one&#x22;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">hash = function (key) {
 			switch (this.type(key)) {
-				case &#x27;undefined&#x27;:
-				case &#x27;null&#x27;:
-				case &#x27;boolean&#x27;:
-				case &#x27;number&#x27;:
-				case &#x27;regexp&#x27;:
-					return key + &#x27;&#x27;;
+				case 'undefined':
+				case 'null':
+				case 'boolean':
+				case 'number':
+				case 'regexp':
+					return key + '';
 
-				case &#x27;date&#x27;:
-					return &#x27;♣&#x27; + key.getTime();
+				case 'date':
+					return 'â™£' + key.getTime();
 
-				case &#x27;string&#x27;:
-					return &#x27;♠&#x27; + key;
+				case 'string':
+					return 'â™&nbsp;' + key;
 
-				case &#x27;array&#x27;:
+				case 'array':
 					var hashes = [];
-					for (var i = 0; i &#x3c; key.length; i++) {
+					for (var i = 0; i &lt; key.length; i++) {
 						hashes[i] = this.hash(key[i]);
 					}
-					return &#x27;♥&#x27; + hashes.join(&#x27;⁞&#x27;);
+					return 'â™¥' + hashes.join('âž');
 
 				default:
-					// TODO: Don&#x27;t use expandos when Object.defineProperty is not available?
-					if (!key.hasOwnProperty(&#x27;_hmuid_&#x27;)) {
+					// TODO: Don't use expandos when Object.defineProperty is not available?
+					if (!key.hasOwnProperty('_hmuid_')) {
 						key._hmuid_ = ++HashMap.uid;
-						hide(key, &#x27;_hmuid_&#x27;);
+						hide(key, '_hmuid_');
 					}
 
-					return &#x27;♦&#x27; + key._hmuid_;
+					return 'â™¦' + key._hmuid_;
 			}
 		}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -630,20 +623,20 @@ map.get(&#x22;1&#x22;); // --&#x3e; &#x22;string one&#x22;
 		}</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ```js
-var HashMap = require(&#x27;hashmap&#x27;);
+var HashMap = require('hashmap');
 ```
 
 ### Basic use case
 
 ```js
-map.<span class="apidocCodeKeywordSpan">set</span>(&#x22;some_key&#x22;, &#x22;some value&#x22;);
-map.get(&#x22;some_key&#x22;); // --&#x3e; &#x22;some value&#x22;
+map.<span class="apidocCodeKeywordSpan">set</span>("some_key", "some value");
+map.get("some_key"); // --&gt; "some value"
 ```
 ### No stringification
 
 ```js
-map.set(&#x22;1&#x22;, &#x22;string one&#x22;);
-map.set(1, &#x22;number one&#x22;);
+map.set("1", "string one");
+map.set(1, "number one");
 ...</pre></li>
     </ul>
 
@@ -660,8 +653,8 @@ map.set(1, &#x22;number one&#x22;);
 			var str = Object.prototype.toString.call(key);
 			var type = str.slice(8, -1).toLowerCase();
 			// Some browsers yield DOMWindow or Window for null and undefined, works fine on Node
-			if (!key &#x26;&#x26; (type === &#x27;domwindow&#x27; || type === &#x27;window&#x27;)) {
-				return key + &#x27;&#x27;;
+			if (!key &amp;&amp; (type === 'domwindow' || type === 'window')) {
+				return key + '';
 			}
 			return type;
 		}</pre></li>
@@ -694,3 +687,4 @@ map.set(1, &#x22;number one&#x22;);
     ]
 </div>
 </div>
+</body></html>
